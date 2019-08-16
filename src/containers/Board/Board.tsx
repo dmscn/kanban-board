@@ -8,23 +8,26 @@ const cards = [1, 2, 3, 4, 5]
 const Board: React.FC = () => (
   <>
     <Box column margin={10}>
+      Column A
       {cards.map((card: number) => (
         <Box marginVertical={5}>
-          <Card>Card {card}</Card>
+          <Card>Card A{card}</Card>
         </Box>
       ))}
     </Box>
     <Box column margin={10}>
+      Column B
       {cards.map((card: number) => (
         <Box marginVertical={5}>
-          <Card>Card {card}</Card>
+          <Card>Card B{card}</Card>
         </Box>
       ))}
     </Box>
     <Box column margin={10}>
+      Column C
       {cards.map((card: number) => (
         <Box marginVertical={5}>
-          <Card>Card {card}</Card>
+          <Card>Card C{card}</Card>
         </Box>
       ))}
     </Box>
