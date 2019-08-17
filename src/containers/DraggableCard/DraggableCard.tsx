@@ -1,5 +1,5 @@
-import React, { useRef } from 'react'
-import Card from '../../components/Card'
+import React from 'react'
+import Card, { cardColors } from '../../components/Card'
 import { useDrag } from 'react-dnd'
 
 export interface DraggableCardProps {
@@ -25,8 +25,10 @@ const DraggableCard: React.FC<DraggableCardProps> = (
     }),
   })
 
+  const color = cardColors[+props.card.id.toString().slice(-1)]
+
   return (
-    <Card ref={drag} dragging={isDragging}>
+    <Card ref={drag} dragging={isDragging} color={color}>
       {children}
     </Card>
   )
