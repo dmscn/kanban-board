@@ -4,7 +4,8 @@ import { useDrop } from 'react-dnd'
 import { BoardContext, boardActions } from '../../ducks/board'
 import DraggableCard from '../DraggableCard'
 import Box from '../../components/Box'
-import Task from '../../models/Task'
+import Card from '../../models/Card'
+import { apiService } from '../../services'
 
 export interface BoardColumnProps {
   title: string
@@ -15,15 +16,12 @@ const BoardColumn: React.FC<BoardColumnProps> = (props: BoardColumnProps) => {
   const { dispatch } = useContext(BoardContext)
   const [, drag] = useDrop({
     accept: 'Card',
-    drop: (card: Task) => {
+    drop: (card: Card) => {
       if (card.column !== props.title) {
-        dispatch(
-          boardActions.moveTask(
-            card,
-            card.column.toLowerCase(),
-            props.title.toLowerCase()
-          )
-        )
+        dispatch(card, card.column.toLowerCase(), props.title.toLowerCase())
+        apiService.updateTaskColumn(card, props.title).catch(() => {
+          dispatch(card, props.title.toLowerCase(), card.column.toLowerCase())
+        })
       }
     },
   })

@@ -1,22 +1,29 @@
 import React, { useContext, useRef, FormEvent } from 'react'
 
 import { BoardContext, boardActions } from '../../ducks/board'
-import Task from '../../models/Task'
+import Task from '../../models/Card'
 
 import Box from '../../components/Box'
 import BoardColumn from '../BoardColumn'
 import TextInput from '../../components/TextInput'
+import { apiService } from '../../services'
 
 const Board: React.FC = () => {
   const { state, dispatch } = useContext(BoardContext)
   const inputRef = useRef(null)
 
-  const createTask = (event: FormEvent) => {
+  const createTask = async (event: FormEvent) => {
     event.preventDefault()
     // @ts-ignore
     const task = new Task(inputRef.current.value)
     // @ts-ignore
     inputRef.current.value = ''
+
+    await apiService.createTask({
+      text: task.element.text,
+      column: task.column,
+    })
+
     dispatch(boardActions.addTask(task, task.column))
   }
 

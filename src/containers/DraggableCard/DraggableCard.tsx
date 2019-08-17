@@ -25,7 +25,7 @@ const DraggableCard: React.FC<DraggableCardProps> = (
     }),
   })
 
-  const color = cardColors[+props.card.id.toString().slice(-1)]
+  const color = cardColors[+props.card.id.slice(-1)]
 
   return (
     <Card ref={drag} dragging={isDragging} color={color}>
