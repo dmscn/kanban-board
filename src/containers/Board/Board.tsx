@@ -1,37 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import Box from '../../components/Box'
-import Card from '../../components/Card'
+import BoardColumn from '../BoardColumn'
+import { BoardContext } from '../../ducks/board'
 
-const cards = [1, 2, 3, 4, 5]
+const Board: React.FC = () => {
+  const { state } = useContext(BoardContext)
 
-const Board: React.FC = () => (
-  <>
-    <Box column margin={10}>
-      Column A
-      {cards.map((card: number) => (
-        <Box marginVertical={5}>
-          <Card>Card A{card}</Card>
-        </Box>
-      ))}
+  return (
+    <Box>
+      <Box column margin={10}>
+        <BoardColumn title="Todo" cards={state.todo} />
+      </Box>
+      <Box column margin={10}>
+        <BoardColumn title="Doing" cards={state.doing} />
+      </Box>
+      <Box column margin={10}>
+        <BoardColumn title="Done" cards={state.done} />
+      </Box>
     </Box>
-    <Box column margin={10}>
-      Column B
-      {cards.map((card: number) => (
-        <Box marginVertical={5}>
-          <Card>Card B{card}</Card>
-        </Box>
-      ))}
-    </Box>
-    <Box column margin={10}>
-      Column C
-      {cards.map((card: number) => (
-        <Box marginVertical={5}>
-          <Card>Card C{card}</Card>
-        </Box>
-      ))}
-    </Box>
-  </>
-)
+  )
+}
 
 export default Board
