@@ -1,17 +1,17 @@
-export default class Task {
+export default class Card {
   type: string
   column: string
   position?: number
   element: {
-    id: string
+    id?: string
     text: string
   }
 
-  constructor(text: string) {
+  constructor(text: string, id?: string) {
     this.type = 'Card'
     this.column = 'todo'
     this.element = {
-      id: (Math.random() * 10).toString().replace('.', ''),
+      id,
       text,
     }
   }
