@@ -1,7 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const cardColors = ['#fdd835', '#f44336', '#8bc34a', '#2196f3', '#9c27b0']
+export const cardColors = [
+  '#fdd835',
+  '#f44336',
+  '#8bc34a',
+  '#2196f3',
+  '#9c27b0',
+  '#f06292',
+  '#ffa726',
+  '#a1887f',
+  '#90a4ae',
+  '##e0e0e0',
+]
 
 export interface CardProps {
   ref?: any
