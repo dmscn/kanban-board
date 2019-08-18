@@ -1,14 +1,13 @@
 import React, { useContext } from 'react'
 import { useDrop } from 'react-dnd'
 
-import { BoardContext } from '../../ducks/board'
+import { BoardContext, boardActions } from '../../ducks/board'
 import DraggableCard from '../DraggableCard'
 import Box from '../../components/Box'
 import { apiService } from '../../services'
 
 export interface BoardColumnProps {
   title: string
-  cards: any[]
 }
 
 type Card = {
@@ -23,15 +22,22 @@ type Card = {
 }
 
 const BoardColumn: React.FC<BoardColumnProps> = (props: BoardColumnProps) => {
-  const { dispatch } = useContext(BoardContext)
+  const { state, dispatch } = useContext(BoardContext)
+  const cards: any = state[props.title.toLowerCase()]
   const [, drag] = useDrop({
     accept: 'Card',
-    drop: (card: Card) => {
+    drop: async (card: any) => {
       if (card.column !== props.title) {
-        dispatch(card, card.column.toLowerCase(), props.title.toLowerCase())
-        apiService.updateTaskColumn(card, props.title).catch(() => {
-          dispatch(card, props.title.toLowerCase(), card.column.toLowerCase())
+        const updatedTask = await apiService.updateTaskColumn(
+          card.element,
+          props.title.toLowerCase()
+        )
+        const action = boardActions.moveTask({
+          task: updatedTask,
+          from: card.column.toLowerCase(),
+          to: props.title.toLowerCase(),
         })
+        dispatch(action)
       }
     },
   })
@@ -47,8 +53,8 @@ const BoardColumn: React.FC<BoardColumnProps> = (props: BoardColumnProps) => {
       width={300}
     >
       <span>{props.title}</span>
-      {props.cards &&
-        props.cards.map((card: any, index: number) => (
+      {cards &&
+        cards.map((card: any, index: number) => (
           <Box
             marginVertical={15}
             key={`${props.title}-${card.id}__${Math.random()}`}

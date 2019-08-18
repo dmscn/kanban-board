@@ -32,13 +32,13 @@ const Board: React.FC = () => {
       </Box>
       <Box>
         <Box column margin={10}>
-          <BoardColumn title="Todo" cards={state.todo} />
+          <BoardColumn title="Todo" />
         </Box>
         <Box column margin={10}>
-          <BoardColumn title="Doing" cards={state.doing} />
+          <BoardColumn title="Doing" />
         </Box>
         <Box column margin={10}>
-          <BoardColumn title="Done" cards={state.done} />
+          <BoardColumn title="Done" />
         </Box>
       </Box>
     </Box>
