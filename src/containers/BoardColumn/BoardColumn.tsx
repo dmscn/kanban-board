@@ -42,6 +42,11 @@ const BoardColumn: React.FC<BoardColumnProps> = (props: BoardColumnProps) => {
     },
   })
 
+  const deleteTask = async (task: any) => {
+    await apiService.deleteTask(task.id)
+    dispatch(boardActions.removeTask(task))
+  }
+
   return (
     <Box
       ref={drag}
@@ -59,7 +64,12 @@ const BoardColumn: React.FC<BoardColumnProps> = (props: BoardColumnProps) => {
             marginVertical={15}
             key={`${props.title}-${card.id}__${Math.random()}`}
           >
-            <DraggableCard column={props.title} position={index} card={card}>
+            <DraggableCard
+              column={props.title}
+              position={index}
+              card={card}
+              onRemove={deleteTask}
+            >
               {card.text}
             </DraggableCard>
           </Box>

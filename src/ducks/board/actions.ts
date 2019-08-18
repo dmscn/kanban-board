@@ -5,9 +5,9 @@ export const addTask = (task: any) => ({
   payload: { task },
 })
 
-export const removeTask = (id: any, column: any) => ({
+export const removeTask = (task: any) => ({
   type: types.DELETE_TASK,
-  payload: { id, column },
+  payload: { task, column: task.column },
 })
 
 export const moveTask = (payload: { task: any; from: any; to: any }) => ({

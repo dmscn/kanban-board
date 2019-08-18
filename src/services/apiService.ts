@@ -52,3 +52,20 @@ export const updateTaskColumn = async (card: any, to: string) => {
     throw new Error(err.message)
   }
 }
+
+export const deleteTask = async (id: string) => {
+  console.info(`Deleting task on server...`)
+  try {
+    const response = await fetch(`${BASE_URL}/deleteTask?id=${id}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    console.info(`Response from the server:`, response)
+    return await response.json()
+  } catch (err) {
+    throw new Error(err.message)
+  }
+}
