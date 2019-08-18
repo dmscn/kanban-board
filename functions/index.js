@@ -74,10 +74,11 @@ exports.updateTask = functions.https.onRequest((req, res) => {
     }
     console.log(req.body)
     const task = req.body.task
-    const ref = database.child(task.id)
+    const id = task.id
     delete task.id
+    const ref = database.child(id)
     ref.set(task)
-    getSingleItemFromDatabase(task.id, res)
+    getSingleItemFromDatabase(id, res)
   })
 })
 
