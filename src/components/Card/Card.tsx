@@ -25,8 +25,7 @@ const Card: React.FC<CardProps> = styled.div<CardProps>`
   width: 100%;
   padding: 16px;
   border-radius: 5px;
-  background: ${props =>
-    props.color || cardColors[Math.floor(Math.random() * cardColors.length)]};
+  background: ${props => props.color};
   opacity: ${props => (props.dragging ? 0.5 : 1)};
   cursor: grab;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
