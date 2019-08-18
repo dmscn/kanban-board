@@ -12,8 +12,8 @@ const getItemsFromDatabase = res => {
     snapshot => {
       snapshot.forEach(task => {
         tasks.push({
-          id: task.key,
           ...task.val(),
+          id: task.key,
         })
       })
       res.status(200).json(tasks)
@@ -27,20 +27,22 @@ const getItemsFromDatabase = res => {
 }
 
 const getSingleItemFromDatabase = (id, res) => {
-  return database.on(
-    'value',
-    snapshot => {
-      snapshot.forEach(task => {
-        if (task.id === id)
-          res.status(200).json({ id: task.key, ...task.val() })
-      })
-    },
-    error => {
-      res.status(error.code).json({
-        message: `Something went wrong: ${error.message}`,
-      })
-    }
-  )
+  return database
+    .orderByKey()
+    .equalTo(id)
+    .once(
+      'value',
+      snapshot => {
+        const task = snapshot.child(id).val()
+        task
+          ? res.status(200).json({ id, ...task })
+          : res.status(404).json({ message: 'Task not found' })
+      },
+      error =>
+        res
+          .status(error.code)
+          .json({ message: `Something went wrong: ${error.message}` })
+    )
 }
 
 exports.getTasks = functions.https.onRequest((req, res) => {
@@ -59,9 +61,9 @@ exports.addTask = functions.https.onRequest((req, res) => {
     }
     console.log(req.body)
     const task = req.body.task
-    console.log({ task })
-    database.push(task)
-    getItemsFromDatabase(res)
+    const key = database.push(task).getKey()
+    console.log('Created key:', key)
+    getSingleItemFromDatabase(key, res)
   })
 })
 
