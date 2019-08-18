@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useDrop } from 'react-dnd'
 
-import { BoardContext, boardActions } from '../../ducks/board'
+import { BoardContext } from '../../ducks/board'
 import DraggableCard from '../DraggableCard'
 import Box from '../../components/Box'
 import Card from '../../models/Card'
