@@ -1,8 +1,8 @@
 import * as types from './types'
 
-export const addTask = (task: any, column: any) => ({
+export const addTask = (task: any) => ({
   type: types.ADD_TASK,
-  payload: { task, column },
+  payload: { task },
 })
 
 export const removeTask = (id: any, column: any) => ({

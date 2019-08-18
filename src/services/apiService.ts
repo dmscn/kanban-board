@@ -1,5 +1,3 @@
-import Card from '../models/Card'
-
 export const BASE_URL = 'https://us-central1-generic-db2c3.cloudfunctions.net'
 
 export const getTasks = async () => {
@@ -31,11 +29,11 @@ export const createTask = async (task: { text: string; column: string }) => {
   }
 }
 
-export const updateTaskColumn = async (card: Card, to: string) => {
+export const updateTaskColumn = async (card: any, to: string) => {
   console.info(`Updating task column on server...`)
 
   const task = {
-    ...card.element,
+    ...card,
     column: to.toLocaleLowerCase(),
   }
 

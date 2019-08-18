@@ -1,7 +1,6 @@
 import React, { useContext, useRef, FormEvent } from 'react'
 
 import { BoardContext, boardActions } from '../../ducks/board'
-import Task from '../../models/Card'
 
 import Box from '../../components/Box'
 import BoardColumn from '../BoardColumn'
@@ -14,17 +13,14 @@ const Board: React.FC = () => {
 
   const createTask = async (event: FormEvent) => {
     event.preventDefault()
-    // @ts-ignore
-    const task = new Task(inputRef.current.value)
+    const createdTask = await apiService.createTask({
+      // @ts-ignore
+      text: inputRef.current.value,
+      column: 'todo',
+    })
     // @ts-ignore
     inputRef.current.value = ''
-
-    await apiService.createTask({
-      text: task.element.text,
-      column: task.column,
-    })
-
-    dispatch(boardActions.addTask(task, task.column))
+    createdTask && dispatch(boardActions.addTask(createdTask))
   }
 
   return (

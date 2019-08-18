@@ -1,7 +1,7 @@
 import * as types from './types'
 
-const addTask = (state: any, { task, column }: any) => {
-  return { ...state, [column]: [task.element, ...state[column]] }
+const addTask = (state: any, { task }: any) => {
+  return { ...state, [task.column]: [task, ...state[task.column]] }
 }
 
 const deleteTask = (state: any, { task, column }: any) => {

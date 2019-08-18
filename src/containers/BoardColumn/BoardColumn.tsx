@@ -4,12 +4,22 @@ import { useDrop } from 'react-dnd'
 import { BoardContext } from '../../ducks/board'
 import DraggableCard from '../DraggableCard'
 import Box from '../../components/Box'
-import Card from '../../models/Card'
 import { apiService } from '../../services'
 
 export interface BoardColumnProps {
   title: string
   cards: any[]
+}
+
+type Card = {
+  type: string
+  column: string
+  position: string | number
+  element: {
+    id: string
+    text: string
+    column: string
+  }
 }
 
 const BoardColumn: React.FC<BoardColumnProps> = (props: BoardColumnProps) => {
@@ -41,7 +51,7 @@ const BoardColumn: React.FC<BoardColumnProps> = (props: BoardColumnProps) => {
         props.cards.map((card: any, index: number) => (
           <Box
             marginVertical={15}
-            key={`${props.title}${card.id}${Math.random()}`}
+            key={`${props.title}-${card.id}__${Math.random()}`}
           >
             <DraggableCard column={props.title} position={index} card={card}>
               {card.text}

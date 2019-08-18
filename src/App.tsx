@@ -9,7 +9,6 @@ import { boardReducer } from './ducks'
 import { BoardContext, boardActions } from './ducks/board'
 import { apiService } from './services'
 import Loading from './containers/Loading'
-import Task from './models/Card'
 
 const initialState = {
   todo: [],
@@ -25,9 +24,7 @@ const App: React.FC = () => {
     const fetchTasks = async () => {
       const tasks = await apiService.getTasks()
       tasks.forEach((task: { id: string; column: string; text: string }) => {
-        dispatch(
-          boardActions.addTask(new Task(task.text, task.id), task.column)
-        )
+        dispatch(boardActions.addTask(task))
       })
       setIsLoading(false)
     }
