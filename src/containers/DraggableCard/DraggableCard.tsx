@@ -12,7 +12,7 @@ export interface DraggableCardProps {
 const DraggableCard: React.FC<DraggableCardProps> = (
   props: DraggableCardProps
 ) => {
-  const { children } = props
+  const { children, card } = props
   const [{ isDragging }, drag] = useDrag({
     item: {
       type: 'Card',
@@ -25,8 +25,8 @@ const DraggableCard: React.FC<DraggableCardProps> = (
     }),
   })
 
-  const idNumbers = props.card.id.match(/\d+/g) || []
-  const color = cardColors[+idNumbers.join().slice(-1)]
+  const idNumbers = (card.id && card.id.match(/\d+/g)) || []
+  const color = cardColors[+idNumbers.join().slice(-1) || 0]
 
   return (
     <Card ref={drag} dragging={isDragging} color={color}>
