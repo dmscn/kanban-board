@@ -2,6 +2,7 @@
   "name": "kanban-board",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://dmscn.github.io/kanban-board",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -10,7 +11,9 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json}\"",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint \"**/*.{ts,tsx}\" --quiet",
-    "lint:css": "stylelint  \"**/*.{ts,tsx}\""
+    "lint:css": "stylelint  \"**/*.{ts,tsx}\"",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,6 +35,7 @@
     "react-dnd": "^9.3.4",
     "react-dnd-html5-backend": "^9.3.4",
     "react-dom": "^16.9.0",
+    "react-modal": "^3.9.1",
     "react-scripts": "3.1.1",
     "styled-components": "^4.3.2"
   },
@@ -40,6 +44,7 @@
     "@types/node": "12.7.2",
     "@types/react": "16.9.2",
     "@types/react-dom": "16.8.5",
+    "@types/react-modal": "^3.8.2",
     "@types/styled-components": "^4.1.18",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@typescript-eslint/parser": "^1.13.0",
@@ -48,6 +53,7 @@
     "eslint-config-react-app": "^5.0.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.0",
+    "gh-pages": "^2.1.1",
     "prettier": "^1.18.2",
     "stylelint": "^10.1.0",
     "stylelint-config-recommended": "^2.2.0",
