@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/kanban-board/static/css/main.d675702e.chunk.css",
+    "main.js": "/kanban-board/static/js/main.57256aa0.chunk.js",
+    "main.js.map": "/kanban-board/static/js/main.57256aa0.chunk.js.map",
+    "runtime~main.js": "/kanban-board/static/js/runtime~main.e120d8ab.js",
+    "runtime~main.js.map": "/kanban-board/static/js/runtime~main.e120d8ab.js.map",
+    "static/js/2.d8134117.chunk.js": "/kanban-board/static/js/2.d8134117.chunk.js",
+    "static/js/2.d8134117.chunk.js.map": "/kanban-board/static/js/2.d8134117.chunk.js.map",
+    "index.html": "/kanban-board/index.html",
+    "precache-manifest.5b15c44e15592b9c50eb1047aa5d453b.js": "/kanban-board/precache-manifest.5b15c44e15592b9c50eb1047aa5d453b.js",
+    "service-worker.js": "/kanban-board/service-worker.js",
+    "static/css/main.d675702e.chunk.css.map": "/kanban-board/static/css/main.d675702e.chunk.css.map"
+  }
+}
