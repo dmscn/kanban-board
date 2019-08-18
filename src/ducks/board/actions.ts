@@ -10,7 +10,7 @@ export const removeTask = (id: any, column: any) => ({
   payload: { id, column },
 })
 
-export const moveTask = (task: any, from: any, to: any) => ({
+export const moveTask = (payload: { task: any; from: any; to: any }) => ({
   type: types.MOVE_TASK,
-  payload: { task, from, to },
+  payload,
 })

@@ -5,7 +5,7 @@ const addTask = (state: any, { task }: any) => {
 }
 
 const deleteTask = (state: any, { task, column }: any) => {
-  const arr = state[column].filter((e: any) => e.id !== task.element.id)
+  const arr = state[column].filter((e: any) => e.id !== task.id)
   return { ...state, [column]: arr }
 }
 
