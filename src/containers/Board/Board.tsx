@@ -27,7 +27,7 @@ const Board: React.FC = () => {
     <Box column>
       <Box justify="flex-end" padding={10}>
         <form onSubmit={createTask}>
-          <TextInput ref={inputRef} placeholder="Nova task..." />
+          <TextInput ref={inputRef} placeholder="New task..." />
         </form>
       </Box>
       <Box>
