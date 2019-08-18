@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 export const cardColors = [
+  '#e0e0e0',
   '#fdd835',
   '#f44336',
   '#8bc34a',
@@ -11,7 +12,6 @@ export const cardColors = [
   '#ffa726',
   '#a1887f',
   '#90a4ae',
-  '##e0e0e0',
 ]
 
 export interface CardProps {
