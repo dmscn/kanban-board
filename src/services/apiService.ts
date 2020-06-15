@@ -1,4 +1,5 @@
-export const BASE_URL = 'https://us-central1-generic-db2c3.cloudfunctions.net'
+export const BASE_URL =
+  'https://us-central1-kanban-board-functions.cloudfunctions.net'
 
 export const getTasks = async (): Promise<any> => {
   console.info(`Fetching tasks from server...`)
@@ -12,8 +13,8 @@ export const getTasks = async (): Promise<any> => {
 }
 
 export const createTask = async (task: {
-  text: string
-  column: string
+  text: string;
+  column: string;
 }): Promise<any> => {
   console.info(`Creating new task on the server...`)
   try {
