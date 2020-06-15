@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useState } from 'react'
+import React, { useReducer, useEffect, useState, ReactElement } from 'react'
 import { DndProvider } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 
@@ -16,16 +16,18 @@ const initialState = {
   done: [],
 }
 
-const App: React.FC = () => {
+const App: React.FunctionComponent = (): ReactElement => {
   const [isLoading, setIsLoading] = useState(true)
   const [state, dispatch] = useReducer(boardReducer, initialState)
 
-  useEffect(() => {
-    const fetchTasks = async () => {
+  useEffect((): void => {
+    const fetchTasks = async (): Promise<void> => {
       const tasks = await apiService.getTasks()
-      tasks.forEach((task: { id: string; column: string; text: string }) => {
-        dispatch(boardActions.addTask(task))
-      })
+      tasks.forEach(
+        (task: { id: string; column: string; text: string }): void => {
+          dispatch(boardActions.addTask(task))
+        }
+      )
       setIsLoading(false)
     }
 

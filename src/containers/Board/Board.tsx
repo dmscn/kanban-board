@@ -1,4 +1,4 @@
-import React, { useContext, useRef, FormEvent } from 'react'
+import React, { useContext, useRef, FormEvent, ReactElement } from 'react'
 
 import { BoardContext, boardActions } from '../../ducks/board'
 
@@ -7,11 +7,11 @@ import BoardColumn from '../BoardColumn'
 import TextInput from '../../components/TextInput'
 import { apiService } from '../../services'
 
-const Board: React.FC = () => {
-  const { state, dispatch } = useContext(BoardContext)
+const Board: React.FunctionComponent = (): ReactElement => {
+  const { dispatch } = useContext(BoardContext)
   const inputRef = useRef(null)
 
-  const createTask = async (event: FormEvent) => {
+  const createTask = async (event: FormEvent): Promise<void> => {
     event.preventDefault()
     const createdTask = await apiService.createTask({
       // @ts-ignore

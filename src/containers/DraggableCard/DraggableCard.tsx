@@ -1,8 +1,6 @@
-import React, { useRef, useState } from 'react'
+import React, { useState, ReactElement } from 'react'
 import Card, { cardColors } from '../../components/Card'
 import { useDrag } from 'react-dnd'
-import { apiService } from '../../services'
-import LoadingIcon from '../../components/LoadingIcon'
 
 export interface DraggableCardProps {
   children: React.ReactNode
@@ -12,9 +10,9 @@ export interface DraggableCardProps {
   onRemove: (task: any) => void
 }
 
-const DraggableCard: React.FC<DraggableCardProps> = (
+const DraggableCard: React.FunctionComponent<DraggableCardProps> = (
   props: DraggableCardProps
-) => {
+): ReactElement => {
   const { children, card, onRemove } = props
   const [isDisabled, setIsDisabled] = useState(false)
   const [{ isDragging }, drag] = useDrag({
@@ -24,7 +22,7 @@ const DraggableCard: React.FC<DraggableCardProps> = (
       position: props.position,
       element: props.card,
     },
-    collect: monitor => ({
+    collect: (monitor: any): any => ({
       isDragging: !!monitor.isDragging(),
     }),
   })
@@ -32,7 +30,7 @@ const DraggableCard: React.FC<DraggableCardProps> = (
   const idNumbers = (card.id && card.id.match(/\d+/g)) || []
   const color = cardColors[+idNumbers.join().slice(-1) || 0]
 
-  const handleDeleteButtonClick = () => {
+  const handleDeleteButtonClick = (): void => {
     setIsDisabled(true)
     onRemove(card)
   }
